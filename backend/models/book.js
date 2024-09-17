@@ -25,6 +25,11 @@ const book = new mongoose.Schema({
     type: String,
     required: true,
   },
+  ISBN: {
+    type: String,
+    required: true,
+    unique: true, // Ensure ISBN is unique
+  },
 }, {timestamps: true});
 
 module.exports = mongoose.model("books", book);
