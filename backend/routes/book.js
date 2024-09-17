@@ -40,7 +40,7 @@ router.post("/add-book", authenticateToken, async (req, res) => {
 });
 
 // Update book -- admin
-router.post("/update-book", authenticateToken, async (req, res) => {
+router.put("/update-book", authenticateToken, async (req, res) => {
     try {
         const { bookid } = req.headers;
 
@@ -76,5 +76,63 @@ router.post("/update-book", authenticateToken, async (req, res) => {
         res.status(500).json({ message: "Internal server error", error: error.message });
     }
 });
+// delete book --admin
+router.delete("/delete-book", authenticateToken, async (req, res) => {
+try{
+    const {bookid}= req.headers;
+    await Book.findByIdAndDelete(bookid);
+    return res.status(200).json({
+        message: "Book deleted successfully!",
+    });
+
+}catch(error){
+    console.log(error);
+    return res.status(500).json({message: " An error occurred"});
+}
+});
+
+// get all books
+router.get("/get-all-books", async (req, res) => {
+    try {
+        const books = await Book.find().sort({ createdAt: -1 });
+        return res.json({
+            status: "Success",
+            data: books,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "An error occurred" });
+    }
+});
+// get recently added book limit 4
+router.get("/get-recently-added-books", async (req, res) => {
+    try {
+        const books = await Book.find().sort({ createdAt: -1 }).limit(4);
+        return res.json({
+            status: "Success",
+            data: books, 
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "An error occurred" });
+    }
+});
+
+// Get book by id
+router.get("/get-book-by-id/:id", async (req, res) => {
+    try {
+        const { id } = req.params;
+        const book = await Book.findById(id);
+        return res.json({
+            status: "Success",
+            data: book
+        });
+       
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "An error occurred", error: error.message });
+    }
+});
+
 
 module.exports = router;
