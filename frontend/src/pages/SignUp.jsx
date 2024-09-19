@@ -1,44 +1,65 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
+  const [Values, setValues] = useState({
     username: "",
     email: "",
-    password: "",
+    password: "",   
     address: "",
   });
+  
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
+  // Handle input changes
+  const change = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setValues((prevData) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const submit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
+    const { username, email, password, address } = Values; // Corrected variable name
+
+    if (username === "" || email === "" || password === "" || address === "") {
+      alert("All fields are required");
+    } else {
+      try {
+        const response = await axios.post("http://localhost:3000/api/v1/sign-up", Values, { // Corrected variable name
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+        alert(response.data.message);
+        navigate("/LogIn");
+      } catch (error) {
+        console.error('Error response:', error.response); // Improved error logging
+        alert(`Error: ${error.response?.data?.message || error.message}`);
+      }
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={submit} className="space-y-4"> {/* Corrected form submission handler */}
           <div>
             <label htmlFor="username" className="block text-gray-700 mb-2">Username</label>
             <input
               type="text"
               id="username"
               name="username"
-              value={formData.username}
-              onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="Username"
               required
+              value={Values.username}
+              onChange={change}
             />
           </div>
           <div>
@@ -47,11 +68,11 @@ const SignUp = () => {
               type="email"
               id="email"
               name="email"
-              value={formData.email}
-              onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              placeholder="email"
+              placeholder="example@gmail.com"
               required
+              value={Values.email}
+              onChange={change}
             />
           </div>
           <div>
@@ -60,11 +81,11 @@ const SignUp = () => {
               type="password"
               id="password"
               name="password"
-              value={formData.password}
-              onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="********"
               required
+              value={Values.password}
+              onChange={change}
             />
           </div>
           <div>
@@ -73,11 +94,11 @@ const SignUp = () => {
               type="text"
               id="address"
               name="address"
-              value={formData.address}
-              onChange={handleChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="123 Main St, City, Country"
               required
+              value={Values.address}
+              onChange={change}
             />
           </div>
           <button
