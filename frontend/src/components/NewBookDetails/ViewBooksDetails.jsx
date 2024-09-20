@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "../Loader/Loader";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { GrLanguage } from "react-icons/gr";
 import { FaHeart, FaCartArrowDown, FaEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 
 const ViewBooksDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [Data, setData] = useState();
   const [loading, setLoading] = useState(true);
 
@@ -53,7 +54,13 @@ const handleCart = async () =>{
   if (loading) {
     return <Loader />;
   }
-
+const handleDelete= async() =>{
+  const response=await axios.delete("http://localhost:3000/api/v1/delete-book",
+    {headers}
+  );
+  alert(response.data.message);
+  navigate("/all-books");
+};
   return (
     <>
       {Data && (
@@ -88,11 +95,12 @@ const handleCart = async () =>{
             {/* Edit & Delete Buttons for Admin */}
             {isLoggedIn && role === "admin" && (
               <div className="flex space-x-4 mt-6">
-                <button className="flex items-center bg-white rounded-full p-4 shadow-md hover:bg-gray-200 transition ease-in-out duration-300">
-                  <FaEdit className="text-blue-500 text-2xl mr-2" />
-                  <span className="text-lg font-medium text-gray-700">Edit Book</span>
-                </button>
-                <button className="flex items-center bg-white rounded-full p-4 shadow-md hover:bg-gray-200 transition ease-in-out duration-300">
+              <Link to={`/updateBook/${id}`} className="flex items-center bg-white rounded-full p-4 shadow-md hover:bg-gray-200 transition ease-in-out duration-300">
+  <FaEdit className="text-blue-500 text-2xl mr-2" />
+  <span className="text-lg font-medium text-gray-700">Edit Book</span>
+</Link>
+
+                <button className="flex items-center bg-white rounded-full p-4 shadow-md hover:bg-gray-200 transition ease-in-out duration-300"  onClick={handleDelete}>
                   <MdOutlineDelete className="text-red-500 text-2xl mr-2" />
                   <span className="text-lg font-medium text-gray-700">Delete Book</span>
                 </button>

@@ -27,7 +27,7 @@ const Favourites = () => {
   }, [FavouriteBooks]); // Empty array to prevent continuous re-fetching
 
   return (
-    <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+    <div className="w-full h-[100%] bg-gray-100 flex flex-col items-center justify-center">
       {/* Display when no favourite books */}
       {FavouriteBooks.length === 0 && (
         <div className="flex flex-col items-center justify-center">
@@ -35,7 +35,7 @@ const Favourites = () => {
             No Favourite Books
           </h2>
           <img
-            src="./cover3.jpg"
+            src="./book.png"
             alt="No favourites"
             className="w-48 h-48 md:w-64 md:h-64 object-contain opacity-70"
           />
