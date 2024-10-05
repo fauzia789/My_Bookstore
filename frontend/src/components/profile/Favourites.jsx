@@ -1,6 +1,6 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import BookCard from '../BookCard/BookCard';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import BookCard from "../BookCard/BookCard";
 
 const Favourites = () => {
   const [FavouriteBooks, setFavouriteBooks] = useState([]);
@@ -24,10 +24,10 @@ const Favourites = () => {
     };
 
     fetch();
-  }, [FavouriteBooks]); // Empty array to prevent continuous re-fetching
+  }, []);
 
   return (
-    <div className="w-full h-[100%] bg-gray-100 flex flex-col items-center justify-center">
+    <div className="w-full min-h-screen bg-gray-100 flex flex-col items-center justify-center">
       {/* Display when no favourite books */}
       {FavouriteBooks.length === 0 && (
         <div className="flex flex-col items-center justify-center">
@@ -44,10 +44,12 @@ const Favourites = () => {
 
       {/* Display books in a responsive grid */}
       {FavouriteBooks.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-          {FavouriteBooks.map((book, index) => (
-            <BookCard key={index} data={book} favourite={true} />
-          ))}
+        <div className="container mx-auto px-4 py-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {FavouriteBooks.map((book, index) => (
+              <BookCard key={index} data={book} favourite={true} />
+            ))}
+          </div>
         </div>
       )}
     </div>

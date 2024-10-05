@@ -30,8 +30,8 @@ const UserOrderHistore = () => {
       
       {OrderHistory && OrderHistory.length === 0 && (
         <div className="flex flex-col items-center justify-center h-full text-zinc-500">
-          <h1 className='text-5xl font-semibold mb-8'>No Order History</h1>
-          <img src="./order.png" alt="No Orders" className='h-32 mb-8' />
+          <h1 className='text-5xl font-semibold mb-8 text-center'>No Order History</h1>
+          <img src="https://icons.veryicon.com/png/o/miscellaneous/template-3/no-order.png" alt="No Orders" className='h-32 mb-8 lg:h-[100%]' />
         </div>
       )}
       

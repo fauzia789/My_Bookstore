@@ -44,8 +44,8 @@ function Navbar() {
               </Link>
             ))}
 
-            {/* Conditionally render Cart if logged in */}
-            {isLoggedIn && (
+            {/* Conditionally render Cart if logged in and not an admin */}
+            {isLoggedIn && role !== "admin" && (
               <Link
                 to="/cart"
                 className="hover:text-blue-500 transition-all duration-500"
@@ -109,8 +109,8 @@ function Navbar() {
           </Link>
         ))}
 
-        {/* Conditionally render Cart in mobile menu */}
-        {isLoggedIn && (
+        {/* Conditionally render Cart in mobile menu if logged in and not an admin */}
+        {isLoggedIn && role !== "admin" && (
           <Link
             to="/cart"
             className={` ${MobileNav} hover:text-blue-500 text-white text-4xl mb-8 font-semibold transition-all duration-500`}

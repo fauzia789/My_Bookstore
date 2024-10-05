@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FaFacebookF, FaGoogle } from "react-icons/fa"; // Import Facebook and Google icons
 
 const SignUp = () => {
   const [Values, setValues] = useState({
@@ -24,13 +25,13 @@ const SignUp = () => {
   // Handle form submission
   const submit = async (e) => {
     e.preventDefault();
-    const { username, email, password, address } = Values; // Corrected variable name
+    const { username, email, password, address } = Values;
 
     if (username === "" || email === "" || password === "" || address === "") {
       alert("All fields are required");
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/api/v1/sign-up", Values, { // Corrected variable name
+        const response = await axios.post("http://localhost:3000/api/v1/sign-up", Values, {
           headers: {
             'Content-Type': 'application/json',
           },
@@ -38,7 +39,7 @@ const SignUp = () => {
         alert(response.data.message);
         navigate("/LogIn");
       } catch (error) {
-        console.error('Error response:', error.response); // Improved error logging
+        console.error('Error response:', error.response);
         alert(`Error: ${error.response?.data?.message || error.message}`);
       }
     }
@@ -48,7 +49,7 @@ const SignUp = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100 px-4">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
-        <form onSubmit={submit} className="space-y-4"> {/* Corrected form submission handler */}
+        <form onSubmit={submit} className="space-y-4">
           <div>
             <label htmlFor="username" className="block text-gray-700 mb-2">Username</label>
             <input
@@ -108,9 +109,30 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <div className="mt-4 text-center">
+
+        {/* Social Media Sign Up */}
+        <div className="mt-6 text-center">
+  <p className="text-gray-600 mb-4">Or sign up with</p>
+  <div className="flex justify-center space-x-4">
+    <button
+      className="flex items-center space-x-2 text-gray-600 border-x-2 border-blue-800 py-2 px-4 rounded-md hover:bg-blue-200 hover:text-white transition"
+    >
+      <FaFacebookF className="text-blue-600" /> {/* Facebook Icon */}
+      <span>Facebook</span>
+    </button>
+    <button
+      className="flex items-center space-x-2 text-gray-600 border-x-2 border-red-800 py-2 px-4 rounded-md hover:bg-red-200 hover:text-white transition"
+    >
+      <FaGoogle className="text-red-500" /> {/* Google Icon */}
+      <span>Google</span>
+    </button>
+  </div>
+</div>
+
+        {/* Already have an account */}
+        <div className="mt-6 text-center">
           <p className="text-gray-600">
-            Already have an account?{' '}
+            Already have an account?{" "}
             <Link to="/login" className="text-blue-500 hover:underline">
               Login
             </Link>
