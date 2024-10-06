@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { authActions } from "../store/auth";
 import { useDispatch } from "react-redux";
+import { FaFacebookF, FaGoogle } from "react-icons/fa"; // Import Facebook and Google icons
 
 const Login = () => {
   const [Values, setValues] = useState({
@@ -30,26 +31,12 @@ const Login = () => {
           Values
         );
         
-    
-
-        // Set values in local storage
         dispatch(authActions.login());
         dispatch(authActions.changeRole(response.data.role));
         localStorage.setItem("id", response.data.id);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("role", response.data.role);
 
-        // Update role in Redux
-   
-
-        // Show different messages based on role
-        // if (role === "admin") {
-        //   alert("Logged in as Admin");
-        // } else {
-        //   alert("Logged in as User");
-        // }
-
-        // Navigate to profile page
         navigate("/profile");
       }
     } catch (error) {
@@ -70,7 +57,6 @@ const Login = () => {
               type="text"
               id="username"
               name="username"
-         
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="Username"
               required
@@ -86,7 +72,6 @@ const Login = () => {
               type="password"
               id="password"
               name="password"
-          
               className="w-full px-3 py-2 border border-gray-300 rounded-md"
               placeholder="********"
               required
@@ -97,13 +82,39 @@ const Login = () => {
           <button
             type="submit"
             className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition"
-         onClick={submit}
-         >
-
+            onClick={submit}
+          >
             Login
           </button>
         </form>
-        
+
+        {/* Social Media Login */}
+        <div className="mt-6 text-center">
+          <p className="text-gray-600 mb-4">Or login with</p>
+          <div className="flex justify-center space-x-4">
+            <button
+              className="flex items-center space-x-2 text-gray-600 border-x-2 border-blue-800 py-2 px-4 rounded-md hover:bg-blue-200 hover:text-white transition"
+            >
+              <FaFacebookF className="text-blue-600" /> {/* Facebook Icon */}
+              <span>
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+                  Facebook
+                </a>
+              </span>
+            </button>
+            <button
+              className="flex items-center space-x-2 text-gray-600 border-x-2 border-red-800 py-2 px-4 rounded-md hover:bg-red-200 hover:text-white transition"
+            >
+              <FaGoogle className="text-red-500" /> {/* Google Icon */}
+              <span>
+                <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">
+                  Google
+                </a>
+              </span>
+            </button>
+          </div>
+        </div>
+
         <div className="mt-4 text-center">
           <p className="text-gray-600">
             Don't have an account?{" "}

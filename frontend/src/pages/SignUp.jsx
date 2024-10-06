@@ -118,13 +118,13 @@ const SignUp = () => {
       className="flex items-center space-x-2 text-gray-600 border-x-2 border-blue-800 py-2 px-4 rounded-md hover:bg-blue-200 hover:text-white transition"
     >
       <FaFacebookF className="text-blue-600" /> {/* Facebook Icon */}
-      <span>Facebook</span>
+      <span> <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">Facebook</a></span>
     </button>
     <button
       className="flex items-center space-x-2 text-gray-600 border-x-2 border-red-800 py-2 px-4 rounded-md hover:bg-red-200 hover:text-white transition"
     >
       <FaGoogle className="text-red-500" /> {/* Google Icon */}
-      <span>Google</span>
+      <span> <a href="https://google.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-400">Google</a></span>
     </button>
   </div>
 </div>
