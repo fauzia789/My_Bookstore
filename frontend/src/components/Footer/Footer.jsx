@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaGoogle } from 'react-icons/fa'; // Import icons including FaGoogle
+import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Footer = () => {
   // Visitor Counter
   const [visitorCount, setVisitorCount] = useState(0);
 
   useEffect(() => {
-    // Simulate visitor count increment (replace with real logic later)
+    
     setVisitorCount(visitorCount + 1);
   }, []);
 

@@ -44,7 +44,7 @@ const UserOrderHistore = () => {
             <div className="text-center  hidden md:block">Description</div>
             <div className="text-center">Price</div>
             <div className="text-center">Status</div>
-            <div className="text-center hidden md:block">Mode</div> {/* Hidden on mobile, visible on md and up */}
+            <div className="text-center hidden md:block">Mode</div>
           </div>
           
           {/* Order History Rows */}
