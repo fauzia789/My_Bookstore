@@ -18,7 +18,7 @@ const change = (e)=>{
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/get-user-information",
+          "http://localhost:1000/api/v1/get-user-information",
           { headers }
         );
         setProfileData(response.data);
@@ -31,7 +31,7 @@ const change = (e)=>{
   }, []);
 
   const handleUpdate = async() => {
-  const response = await axios.put("http://localhost:3000/api/v1/update-address",Value,
+  const response = await axios.put("http://localhost:1000/api/v1/update-address",Value,
     {headers}
   );
   alert(response.data.message);

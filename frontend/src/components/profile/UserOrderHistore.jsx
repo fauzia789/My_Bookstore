@@ -13,7 +13,7 @@ const UserOrderHistore = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/v1/order-history", { headers });
+        const response = await axios.get("http://localhost:1000/api/v1/order-history", { headers });
         setOrderHistory(response.data.data);
       } catch (error) {
         console.error("Error fetching order history:", error);

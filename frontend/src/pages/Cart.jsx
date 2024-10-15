@@ -18,7 +18,7 @@ const Cart = () => {
 
   const fetchCartData = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/v1/get-user-cart", { headers });
+      const response = await axios.get("http://localhost:1000/api/v1/get-user-cart", { headers });
       setCart(response.data.data || []);
       calculateTotal(response.data.data || []);
     } catch (error) {
@@ -51,7 +51,7 @@ const Cart = () => {
 
   const handlePlaceOrder = async () => {
     try {
-      const response = await axios.post(`http://localhost:3000/api/v1/place-order`, { order: cart }, { headers });
+      const response = await axios.post(`http://localhost:1000/api/v1/place-order`, { order: cart }, { headers });
       alert(response.data.message);
       navigate("/profile/orderHistory");
     } catch (error) {

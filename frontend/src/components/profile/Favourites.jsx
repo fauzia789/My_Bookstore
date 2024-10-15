@@ -14,7 +14,7 @@ const Favourites = () => {
     const fetch = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/get-favourite-books",
+          "http://localhost:1000/api/v1/get-favourite-books",
           { headers }
         );
         setFavouriteBooks(response.data.data || []);

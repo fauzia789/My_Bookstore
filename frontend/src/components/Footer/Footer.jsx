@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { FaFacebook, FaTwitter, FaInstagram, FaGithub, FaGoogle } from 'react-icons/fa';
+import Cookies from 'js-cookie';
 
 const Footer = () => {
   // Visitor Counter
   const [visitorCount, setVisitorCount] = useState(0);
 
   useEffect(() => {
-    
-    setVisitorCount(visitorCount + 1);
+    // Check if the cookie for visitor count exists
+    const storedCount = Cookies.get('visitorCount');
+    if (storedCount) {
+      // Increment the count if cookie exists
+      const updatedCount = parseInt(storedCount, 10) + 1;
+      setVisitorCount(updatedCount);
+      Cookies.set('visitorCount', updatedCount, { expires: 7 }); // Cookie will expire in 7 days
+    } else {
+      // Initialize the cookie if it doesn't exist
+      Cookies.set('visitorCount', 1, { expires: 7 });
+      setVisitorCount(1);
+    }
   }, []);
 
   return (
-    <footer className="bg-zinc-800 text-white px-10 py-12 space-y-10 " >
+    <footer className="bg-zinc-800 text-white px-10 py-12 space-y-10">
       {/* Main Footer Content */}
       <div className="flex flex-col md:flex-row justify-between space-x-5 items-start space-y-8 md:space-y-0">
         

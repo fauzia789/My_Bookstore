@@ -16,7 +16,9 @@ import UserOrderHistore from './components/profile/UserOrderHistore';
 import Settings from './components/profile/Settings';
 import AllOrders from './pages/AllOrders';
 import AddBook from './pages/AddBook'; 
-import UpdateBook from './pages/UpdateBook'
+import UpdateBook from './pages/UpdateBook';
+import IPAddressPopup from './components/IPAddressPopup/IPAddressPopup'; // Import the component
+
 const App = () => {
   const dispatch = useDispatch();
   const role = useSelector((state) => state.auth.role);
@@ -35,6 +37,8 @@ const App = () => {
   return (
     <div>
       <Navbar />
+      {/* Add the IPAddressPopup here so it's available site-wide */}
+      <IPAddressPopup />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-books" element={<AllBooks />} />

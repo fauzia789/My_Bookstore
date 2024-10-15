@@ -17,7 +17,7 @@ const Profile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/get-user-information",
+          "http://localhost:1000/api/v1/get-user-information",
           { headers }
         );
         setProfile(response.data);
