@@ -37,8 +37,8 @@ const App = () => {
   return (
     <div>
       <Navbar />
-      {/* Add the IPAddressPopup here so it's available site-wide */}
-      <IPAddressPopup />
+     
+    
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/all-books" element={<AllBooks />} />
@@ -54,6 +54,7 @@ const App = () => {
         <Route path="/UpdateBook/:id" element={<UpdateBook />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="view-book-details/:id" element={<ViewBooksDetails />} />
+        <Route path="/IPAddressPopup" element={<IPAddressPopup />} />
       </Routes>
       <Footer />
     </div>
