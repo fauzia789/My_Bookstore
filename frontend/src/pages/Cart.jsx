@@ -40,7 +40,7 @@ const Cart = () => {
 
   const deleteItem = async (bookid) => {
     try {
-      const response = await axios.put(`http://localhost:3000/api/v1/remove-from-cart/${bookid}`, null, { headers });
+      const response = await axios.put(`http://localhost:1000/api/v1/remove-from-cart/${bookid}`, null, { headers });
       alert(response.data.message);
       await fetchCartData();
     } catch (error) {
