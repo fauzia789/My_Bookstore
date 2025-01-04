@@ -19,7 +19,7 @@ const AllOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const response = await axios.get("http://localhost:1000/api/v1/all-orders", { headers });
+        const response = await axios.get("https://my-bookstore-8ev1.onrender.com/api/v1/all-orders", { headers });
         setAllOrders(response.data.data);
       } catch (error) {
         console.error("Error fetching orders", error);

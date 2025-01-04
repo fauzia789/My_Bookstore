@@ -17,7 +17,7 @@ const Profile = () => {
     const fetchProfileData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:1000/api/v1/get-user-information",
+          "https://my-bookstore-8ev1.onrender.com/api/v1/get-user-information",
           { headers }
         );
         setProfile(response.data);

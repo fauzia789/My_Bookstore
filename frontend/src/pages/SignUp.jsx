@@ -30,7 +30,7 @@ const SignUp = () => {
       alert("All fields are required");
     } else {
       try {
-        const response = await axios.post("http://localhost:1000/api/v1/sign-up", Values, {
+        const response = await axios.post("https://my-bookstore-8ev1.onrender.com/api/v1/sign-up", Values, {
           headers: {
             'Content-Type': 'application/json',
           },
