@@ -4,16 +4,20 @@ import { FaGripLines } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const links = [
-    {
-      title: "Home",
-      link: "/",
-    },
-    {
-      title: "All Books",
-      link: "/all-books",
-    },
-  ];
+ const links = [
+  {
+    title: "Home",
+    link: "/",
+  },
+  {
+    title: "All Books",
+    link: "/all-books",
+  },
+  {
+    title: "Demo",
+    link: "/landing",
+  },
+];
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);

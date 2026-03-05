@@ -1,35 +1,53 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import IPAddressPopup from '../IPAddressPopup/IPAddressPopup';  // Import the popup component
+import IPAddressPopup from '../IPAddressPopup/IPAddressPopup';
 
 const Hero = () => {
   return (
     <div className='h-[76vh] flex flex-col md:flex-row items-center justify-center'>
+
       {/* IP Address Popup */}
-      <IPAddressPopup /> 
+      <IPAddressPopup />
 
       <div className='w-full lg:w-3/6 mb-12 md:mb-0 flex flex-col items-center lg:items-start justify-center space-y-12'>
+        
         <h1 className='text-4xl lg:text-6xl font-semibold text-yellow-10 text-center lg:text-left'>
           Discover Your Next Great Read
         </h1>
+
         <p className='mt-4 text-xl text-zinc-300 text-center lg:text-left'>
           Explore a curated selection of captivating books and uncover your next literary adventure.
           Whether you're into thrilling mysteries, inspiring biographies, or imaginative fiction,
           we have the perfect read waiting for you.
         </p>
-        <div className='mt-8'>
+
+        {/* Buttons */}
+        <div className='mt-8 flex gap-6'>
+
+          {/* Discover Books */}
           <Link
             to="/all-books"
-            className='text-yellow-100 text-xl lg:text-2xl font-semibold border border-yellow-100 px-10 py-3 hover:bg-zinc-800 rounded-full'
+            className='text-yellow-100 text-xl lg:text-2xl font-semibold border border-yellow-100 px-10 py-3 hover:bg-zinc-800 rounded-full transition'
           >
             Discover Books
           </Link>
+
+          {/* Landing Page Button */}
+          <Link
+            to="/landing"
+            className='text-white text-xl lg:text-2xl font-semibold bg-blue-600 px-10 py-3 hover:bg-blue-700 rounded-full transition'
+          >
+            Watch Demo
+          </Link>
+
         </div>
+
       </div>
 
       <div className='w-full lg:w-3/6 h-auto lg:h-[100%] flex items-center justify-center'>
         <img src="./cover.png" alt="cover" />
       </div>
+
     </div>
   );
 };
